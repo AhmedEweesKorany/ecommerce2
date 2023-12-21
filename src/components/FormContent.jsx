@@ -25,7 +25,56 @@ function FormContent() {
             }} /> <span className='check' id='password-check'></span>
             </div>
             c <div className=' d-flex justify-content-center'>
-            <Link className='btn btn-primary mt-2' to={"/home" }>تسجيل الدخول</Link>
+            <Link className='btn btn-primary mt-2' to={"/home" }    onClick={(e)=>{
+ // Function to validate username using regex
+function validateUsername(username) {
+  return /^[a-zA-Z0-9\s]+$/.test(username);
+}
+
+// Function to validate password using regex
+function validatePassword(password) {
+  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(password);
+}
+
+// Your form submission function
+
+  var username = document.getElementById('username').value;
+  var password = document.getElementById('password').value;
+
+  // Validate username
+  if (username === "" || !validateUsername(username)) {
+    e.preventDefault();
+    document.getElementById('name-check').innerHTML = "Invalid username";
+    document.getElementById('username').style.border = "1px solid red";
+  } else {
+    e.preventDefault();
+    document.getElementById('name-check').innerHTML = "";
+    document.getElementById('username').style.border = "1px solid grey";
+  }
+
+  // Validate password
+  if (password === "") {
+    e.preventDefault();
+
+    document.getElementById('password-check').innerHTML = "Invalid password";
+    document.getElementById('password').style.border = "1px solid red";
+  } else if (password.length < 8 || !validatePassword(password)) {
+    e.preventDefault();
+
+    document.getElementById('password-check').innerHTML = "Password must be at least 8 characters and include at least one uppercase letter, one lowercase letter, and one digit.";
+    document.getElementById('password').style.border = "1px solid red";
+  } else {
+    document.getElementById('password-check').innerHTML = "";
+    document.getElementById('password').style.border = "1px solid grey";
+    window.location.href = "/home";
+  }
+
+
+    // post data to database
+    
+
+  }}
+  >تسجيل الدخول</Link>
             </div>
          
   <br />
